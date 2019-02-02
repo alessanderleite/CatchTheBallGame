@@ -148,6 +148,17 @@ public class MainActivity extends AppCompatActivity {
             score += 10;
             orangeX = -10;
         }
+
+        //Pink
+        int pinkCenterX = pinkX + pink.getWidth()/2;
+        int pinkCenterY = pinkY + pink.getWidth()/2;
+
+        if (0 <= pinkCenterX && pinkCenterX <= boxSize &&
+                boxY <= pinkCenterY && pinkCenterY <= boxY + boxSize) {
+
+            score += 30;
+            pinkX = -10;
+        }
     }
 
     public boolean onTouchEvent(MotionEvent me) {
