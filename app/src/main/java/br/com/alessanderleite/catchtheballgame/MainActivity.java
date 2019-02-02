@@ -159,6 +159,20 @@ public class MainActivity extends AppCompatActivity {
             score += 30;
             pinkX = -10;
         }
+
+        //Black
+        int blackCenterX = blackX + black.getWidth()/2;
+        int blackCenterY = blackY + black.getHeight()/2;
+
+        if (0 <= blackCenterX && blackCenterX <= boxSize &&
+                boxY <= blackCenterY && blackCenterY <= boxY + boxSize) {
+
+            //Stop Timer!!
+            timer.cancel();
+            timer = null;
+
+            //Show Result
+        }
     }
 
     public boolean onTouchEvent(MotionEvent me) {
