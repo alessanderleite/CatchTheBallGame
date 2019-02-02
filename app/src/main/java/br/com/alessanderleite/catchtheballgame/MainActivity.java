@@ -91,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
         orange.setX(orangeX);
         orange.setY(orangeY);
 
+        //Black
+        blackX -=16;
+        if (blackX < 0) {
+            blackX = screenWidth + 10;
+            blackY = (int) Math.floor(Math.random() * (frameHeight - black.getHeight()));
+        }
+        black.setX(blackX);
+        black.setY(blackY);
+
         //Move Box
         if (action_flg == true) {
             //Touching
