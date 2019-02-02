@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+<<<<<<< HEAD
 import android.view.Window;
 import android.view.WindowManager;
+=======
+>>>>>>> 8a62fe706812349f202febf655a5bc7e5127f453
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,8 +33,11 @@ public class MainActivity extends AppCompatActivity {
     //Size
     private int frameHeight;
     private int boxSize;
+<<<<<<< HEAD
     private int screenWidth;
     private int screenHeight;
+=======
+>>>>>>> 8a62fe706812349f202febf655a5bc7e5127f453
 
     //Position
     private int boxY;
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void changePos() {
 
+<<<<<<< HEAD
         //Orange
         orangeX -= 12;
         if (orangeX < 0) {
@@ -100,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
         black.setX(blackX);
         black.setY(blackY);
 
+=======
+>>>>>>> 8a62fe706812349f202febf655a5bc7e5127f453
         //Move Box
         if (action_flg == true) {
             //Touching
@@ -130,10 +139,17 @@ public class MainActivity extends AppCompatActivity {
             frameHeight = frame.getHeight();
 
             boxY = (int)box.getY();
+<<<<<<< HEAD
 
             //The box is a square.(height and width are the same.)
             boxSize = box.getHeight();
 
+=======
+
+            //The box is a square.(height and width are the same.)
+            boxSize = box.getHeight();
+
+>>>>>>> 8a62fe706812349f202febf655a5bc7e5127f453
             startLabel.setVisibility(View.GONE);
 
             timer.schedule(new TimerTask() {
