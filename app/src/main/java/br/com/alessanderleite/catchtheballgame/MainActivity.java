@@ -1,6 +1,5 @@
 package br.com.alessanderleite.catchtheballgame;
 
-import android.graphics.Paint;
 import android.graphics.Point;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -8,16 +7,11 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-<<<<<<< HEAD
-import android.view.Window;
 import android.view.WindowManager;
-=======
->>>>>>> 8a62fe706812349f202febf655a5bc7e5127f453
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,11 +27,8 @@ public class MainActivity extends AppCompatActivity {
     //Size
     private int frameHeight;
     private int boxSize;
-<<<<<<< HEAD
     private int screenWidth;
     private int screenHeight;
-=======
->>>>>>> 8a62fe706812349f202febf655a5bc7e5127f453
 
     //Position
     private int boxY;
@@ -51,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     //Initialize Class
     private Handler handler = new Handler();
     private Timer timer = new Timer();
+
+    //Score
+    private int score = 0;
 
     //Status Check
     private boolean action_flg = false;
@@ -84,11 +78,14 @@ public class MainActivity extends AppCompatActivity {
         pink.setY(-80);
         black.setX(-80);
         black.setY(-80);
+
+        scoreLabel.setText("Score : 0");
     }
 
     public void changePos() {
 
-<<<<<<< HEAD
+        hitCheck();
+
         //Orange
         orangeX -= 12;
         if (orangeX < 0) {
@@ -102,13 +99,20 @@ public class MainActivity extends AppCompatActivity {
         blackX -=16;
         if (blackX < 0) {
             blackX = screenWidth + 10;
-            blackY = (int) Math.floor(Math.random() * (frameHeight - black.getHeight()));
+            blackY = (int)Math.floor(Math.random() * (frameHeight - black.getHeight()));
         }
         black.setX(blackX);
         black.setY(blackY);
 
-=======
->>>>>>> 8a62fe706812349f202febf655a5bc7e5127f453
+        //Pink
+        pinkX -= 20;
+        if (pinkX < 0) {
+            pinkX = screenWidth + 5000;
+            pinkY = (int)Math.floor(Math.random() * (frameHeight - pink.getHeight()));
+        }
+        pink.setX(pinkX);
+        pink.setY(pinkY);
+
         //Move Box
         if (action_flg == true) {
             //Touching
@@ -124,6 +128,26 @@ public class MainActivity extends AppCompatActivity {
         if (boxY > frameHeight - boxSize) boxY = frameHeight - boxSize;
 
         box.setY(boxY);
+
+        scoreLabel.setText("Score :" + score);
+    }
+
+    public void hitCheck() {
+
+        //If the center the ball is in the box, it counts as a hit
+
+        //Orange
+        int orangeCenterX = orangeX + orange.getWidth()/2;
+        int orangeCenterY = orangeY + orange.getHeight()/2;
+
+        // 0 <= orangeCenterX <= boxWidth
+        // boxY <= orangeCenterY <= boxY + boxHeight
+        if (0 <= orangeCenterX && orangeCenterX <= boxSize &&
+                boxY <= orangeCenterY && orangeCenterY <= boxY + boxSize) {
+
+            score += 10;
+            orangeX = -10;
+        }
     }
 
     public boolean onTouchEvent(MotionEvent me) {
@@ -139,17 +163,13 @@ public class MainActivity extends AppCompatActivity {
             frameHeight = frame.getHeight();
 
             boxY = (int)box.getY();
-<<<<<<< HEAD
 
             //The box is a square.(height and width are the same.)
             boxSize = box.getHeight();
 
-=======
-
             //The box is a square.(height and width are the same.)
             boxSize = box.getHeight();
 
->>>>>>> 8a62fe706812349f202febf655a5bc7e5127f453
             startLabel.setVisibility(View.GONE);
 
             timer.schedule(new TimerTask() {
