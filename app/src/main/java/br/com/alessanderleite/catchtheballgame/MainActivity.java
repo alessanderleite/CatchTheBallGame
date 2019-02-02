@@ -1,11 +1,15 @@
 package br.com.alessanderleite.catchtheballgame;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
 
     //Position
     private int boxY;
+
+    //Initialize Class
+    private Handler handler = new Handler();
+    private Timer timer = new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,23 @@ public class MainActivity extends AppCompatActivity {
 
         startLabel.setVisibility(View.INVISIBLE);
         boxY = 500;
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        changePos();
+                    }
+                });
+            }
+        }, 0, 20);
+    }
+
+    public void changePos() {
+
+        box.setY(boxY);
     }
 
     public boolean onTouchEvent(MotionEvent me) {
