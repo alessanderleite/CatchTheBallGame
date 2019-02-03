@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -41,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
     private int blackX;
     private int blackY;
 
+    //Speed
+    private int boxSpeed;
+    private int orangeSpeed;
+    private int pinkSpeed;
+    private int blackSpeed;
+
     //Score
     private int score = 0;
 
@@ -76,6 +83,19 @@ public class MainActivity extends AppCompatActivity {
         screenWidth = size.x;
         screenHeight = size.y;
 
+        //Now
+        //Nexus4 width:768 height:1184
+        //Speed box:20 orange:12 pink:20 black:16
+        boxSpeed = Math.round(screenHeight / 60F);      // 1184 / 60 = 19.733... => 20
+        orangeSpeed = Math.round(screenWidth / 60F);    // 768 / 60 = 12.8 => 13
+        pinkSpeed = Math.round(screenWidth / 36F);      // 768 / 36 = 21.333 => 21
+        blackSpeed = Math.round(screenWidth / 45F);      // 768 /45 = 17.06... => 17
+
+        Log.v("SPEED_BOX", boxSpeed + "");
+        Log.v("SPEED_ORANGE", orangeSpeed + "");
+        Log.v("SPEED_PINK", pinkSpeed + "");
+        Log.v("SPEED_BLACK", blackSpeed + "");
+
         //Move to out of screen
         orange.setX(-80);
         orange.setY(-80);
@@ -92,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         hitCheck();
 
         //Orange
-        orangeX -= 12;
+        orangeX -= orangeSpeed;
         if (orangeX < 0) {
             orangeX = screenWidth + 20;
             orangeY = (int)Math.floor(Math.random() * (frameHeight - orange.getHeight()));
@@ -101,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         orange.setY(orangeY);
 
         //Black
-        blackX -=16;
+        blackX -= blackSpeed;
         if (blackX < 0) {
             blackX = screenWidth + 10;
             blackY = (int)Math.floor(Math.random() * (frameHeight - black.getHeight()));
@@ -110,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         black.setY(blackY);
 
         //Pink
-        pinkX -= 20;
+        pinkX -= pinkSpeed;
         if (pinkX < 0) {
             pinkX = screenWidth + 5000;
             pinkY = (int)Math.floor(Math.random() * (frameHeight - pink.getHeight()));
@@ -121,11 +141,11 @@ public class MainActivity extends AppCompatActivity {
         //Move Box
         if (action_flg == true) {
             //Touching
-            boxY -= 20;
+            boxY -= boxSpeed;
 
         } else {
             //Releasing
-            boxY += 20;
+            boxY += boxSpeed;
         }
 
         //Check box position
