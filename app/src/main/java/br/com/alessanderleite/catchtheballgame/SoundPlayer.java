@@ -29,7 +29,7 @@ public class SoundPlayer {
                     .setAudioAttributes(audioAttributes)
                     .setMaxStreams(SOUND_POOL_MAX)
                     .build();
-            
+
         } else {
             //SoundPool (int maxStreams, int streamType, srcQuality)
             soundPool = new SoundPool(SOUND_POOL_MAX, AudioManager.STREAM_MUSIC, 0);
