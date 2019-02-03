@@ -1,5 +1,6 @@
 package br.com.alessanderleite.catchtheballgame;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -172,6 +173,9 @@ public class MainActivity extends AppCompatActivity {
             timer = null;
 
             //Show Result
+            Intent intent = new Intent(getApplicationContext(), Result.class);
+            intent.putExtra("SCORE", score);
+            startActivity(intent);
         }
     }
 
