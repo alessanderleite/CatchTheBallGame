@@ -41,12 +41,13 @@ public class MainActivity extends AppCompatActivity {
     private int blackX;
     private int blackY;
 
+    //Score
+    private int score = 0;
+
     //Initialize Class
     private Handler handler = new Handler();
     private Timer timer = new Timer();
-
-    //Score
-    private int score = 0;
+    private SoundPlayer sound;
 
     //Status Check
     private boolean action_flg = false;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sound = new SoundPlayer(this);
 
         scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         startLabel = (TextView) findViewById(R.id.startLabel);
@@ -149,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
             score += 10;
             orangeX = -10;
+            sound.playHitSound();
         }
 
         //Pink
@@ -160,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
             score += 30;
             pinkX = -10;
+            sound.playHitSound();
         }
 
         //Black
@@ -172,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
             //Stop Timer!!
             timer.cancel();
             timer = null;
+
+            sound.playOverSound();
 
             //Show Result
             Intent intent = new Intent(getApplicationContext(), Result.class);
