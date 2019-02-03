@@ -27,13 +27,13 @@ public class Result extends AppCompatActivity {
         if (score > highScore) {
             highScoreLabel.setText("High Score : " + score);
 
-            //Save
+            //Update High Score
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt("HIGH_SCORE", score);
             editor.commit();
 
         } else {
-            highScoreLabel.setText("High Score : " + score);
+            highScoreLabel.setText("High Score : " + highScore);
         }
     }
 
